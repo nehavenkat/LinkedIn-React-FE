@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, FormGroup, Label, Input} from "reactstrap";
+import { Form, FormGroup, Label, Input } from "reactstrap";
 
 class ExperienceUpdateForm extends React.Component {
   state = {
@@ -13,7 +13,7 @@ class ExperienceUpdateForm extends React.Component {
     let idInput = ev.target.id;
     let newFormData = this.state.formData;
     newFormData[ev.target.id] = ev.target.value;
-    this.setState({ formData: newFormData})
+    this.setState({ formData: newFormData });
     console.log(this.state);
   };
 
@@ -22,20 +22,17 @@ class ExperienceUpdateForm extends React.Component {
     let username = "user16";
     let password = "c9WEUxMS294hN6fF";
     let token = btoa(username + ":" + password);
-    let response = await fetch(
-      "https://striveschool.herokuapp.com/api/profile/user16/experiences/",
-      {
-        method: "POST",
-        body: JSON.stringify(this.state.formData),
-        headers: {
-          Authorization: "Basic " + token,
-          "Content-Type": "application/json"
-        }
-      } 
-    );
-    this.setState({closeModal: true})
+    let response = await fetch("http://localhost:3002/experiences", {
+      method: "POST",
+      body: JSON.stringify(this.state.formData),
+      headers: {
+        Authorization: "Basic " + token,
+        "Content-Type": "application/json"
+      }
+    });
+    this.setState({ closeModal: true });
   };
-  
+
   render() {
     return (
       <div className="modal-div">
@@ -105,18 +102,18 @@ class ExperienceUpdateForm extends React.Component {
             onClick={this.handleSubmit}
           />
           <FormGroup>
-          <Input
-                  id="exitBtn"
-                  type="exit"
-                  class="btn btn-danger"
-                  value="Exit"
-                  onClick={this.props.closeModal}
-              />
-              </FormGroup>
+            <Input
+              id="exitBtn"
+              type="exit"
+              class="btn btn-danger"
+              value="Exit"
+              onClick={this.props.closeModal}
+            />
+          </FormGroup>
         </Form>
       </div>
     );
   }
- }
+}
 
 export default ExperienceUpdateForm;

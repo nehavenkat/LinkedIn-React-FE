@@ -12,8 +12,7 @@ class Experience extends React.Component {
     modalOpen: false
   };
 
-
-  setModal = (experience) => {
+  setModal = experience => {
     if (this.state.modalOpen === true) {
       this.setState({
         modalOpen: false
@@ -21,7 +20,6 @@ class Experience extends React.Component {
     } else if (this.state.modalOpen === false) {
       this.setState({
         modalOpen: true
- 
       });
     }
   };
@@ -33,8 +31,8 @@ class Experience extends React.Component {
           <Row>
             <Col className="mt-3">
               <h3>Experience</h3>
-              </Col>
-              <Col className="mt-3">
+            </Col>
+            <Col className="mt-3">
               <FontAwesomeIcon
                 onClick={this.setModal}
                 id="editexperience"
@@ -46,7 +44,6 @@ class Experience extends React.Component {
                   open={this.state.modalOpen}
                 />
               )}
-              
             </Col>
           </Row>
 
@@ -55,12 +52,9 @@ class Experience extends React.Component {
               {this.state.experiences &&
                 this.state.experiences.map((experience, index) => (
                   <ExperiencesPosted allExp={experience} key={index} />
-                  ))}
-
+                ))}
             </Col>
           </Row>
-
-        
         </Container>
       </>
     );
@@ -70,15 +64,12 @@ class Experience extends React.Component {
     let username = "user16";
     let password = "c9WEUxMS294hN6fF";
     let token = btoa(username + ":" + password);
-    let response = await fetch(
-      "https://striveschool.herokuapp.com/api/profile/user16/experiences",
-      {
-        method: "GET",
-        headers: {
-          Authorization: "Basic " + token
-        }
+    let response = await fetch("http://localhost:3002/experiences", {
+      method: "GET",
+      headers: {
+        Authorization: "Basic " + token
       }
-    );
+    });
     let exp = await response.json();
     this.setState({
       experiences: exp

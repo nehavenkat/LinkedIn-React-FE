@@ -62,7 +62,7 @@ class NewsFeedBox extends Component {
             <FaTrash onClick={this.delete} />
           </div>
           <ToastHeader>
-            <div>{this.props.newsData.profileID[0].username}</div>
+            <div>{this.props.newsData.profileID.username}</div>
           </ToastHeader>
           <ToastBody>
             {this.props.newsData.text}
