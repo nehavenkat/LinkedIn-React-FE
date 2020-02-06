@@ -1,21 +1,14 @@
 import React from "react";
-import {
-  Container,
-  Toast,
-  ToastHeader,
-  ToastBody,
-  Row,
-  Spinner
-} from "reactstrap";
+import { Container, Row, Spinner } from "reactstrap";
 import { FaPencilAlt } from "react-icons/fa";
 import NewsModel from "./NewsModel";
 import NewsFeedBox from "./NewsFeedBox";
-import NewsPictureModel from "./NewsPictureModel";
+//import NewsPictureModel from "./NewsPictureModel";
 
-let Toaststyle = {
-  width: "900px",
-  height: "250px"
-};
+// let Toaststyle = {
+//   width: "900px",
+//   height: "250px"
+// };
 
 let pencil = {
   width: "150px",

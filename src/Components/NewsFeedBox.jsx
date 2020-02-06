@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Toast, ToastBody, ToastHeader, Col } from "reactstrap";
-import { FaBars, FaTrash } from "react-icons/fa";
+import { FaTrash } from "react-icons/fa";
 import NewsPictureModel from "./NewsPictureModel";
 import { FaCameraRetro } from "react-icons/fa";
 let Toaststyle = {
