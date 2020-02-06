@@ -1,12 +1,14 @@
 import React from "react";
-import { Form, FormGroup, Label, Input } from "reactstrap";
+import { Form, FormGroup, Label, Input, Button } from "reactstrap";
 
 class ExperienceUpdateForm extends React.Component {
   state = {
     experiences: "",
     closeModal: false,
     isSubmitted: false,
-    formData: {}
+    formData: {
+      username: "Neha"
+    }
   };
   updateObj = ev => {
     let input = ev.target.value;
@@ -22,6 +24,8 @@ class ExperienceUpdateForm extends React.Component {
     let username = "user16";
     let password = "c9WEUxMS294hN6fF";
     let token = btoa(username + ":" + password);
+
+    console.log(this.state.formData);
     let response = await fetch("http://localhost:3002/experiences", {
       method: "POST",
       body: JSON.stringify(this.state.formData),
@@ -30,7 +34,9 @@ class ExperienceUpdateForm extends React.Component {
         "Content-Type": "application/json"
       }
     });
-    this.setState({ closeModal: true });
+    console.log("response from server", response);
+    this.props.closeModal(this.props.passAsParam);
+    // this.setState({ closeModal: true });
   };
 
   render() {
@@ -45,23 +51,23 @@ class ExperienceUpdateForm extends React.Component {
         </div>
         <Form className="update-form" onSubmit={this.handleSubmit}>
           <FormGroup>
-            <Label for="examplePassword">Company</Label>
+            <Label for="examplePassword">Role</Label>
             <Input
               type="text"
               onChange={this.updateObj}
               name="password"
-              id="company"
-              placeholder="Name of Employer?"
+              id="role"
+              placeholder="role of employe?"
             />
           </FormGroup>
           <FormGroup>
-            <Label for="exampleEmail">Position</Label>
+            <Label for="exampleEmail">Company</Label>
             <Input
               type="email"
               onChange={this.updateObj}
               name="email"
-              id="role"
-              placeholder="What was your role in the company?"
+              id="company"
+              placeholder="What was your company?"
             />
           </FormGroup>
           <FormGroup>
@@ -75,7 +81,17 @@ class ExperienceUpdateForm extends React.Component {
             />
           </FormGroup>
           <FormGroup>
-            <Label for="examplePassword">Duties</Label>
+            <Label for="examplePassword">Last Date</Label>
+            <Input
+              type="date"
+              onChange={this.updateObj}
+              name="password"
+              id="lasteDate"
+              placeholder="What was your LastDate"
+            />
+          </FormGroup>
+          <FormGroup>
+            <Label for="examplePassword">Description</Label>
             <Input
               type="text"
               onChange={this.updateObj}
@@ -94,22 +110,32 @@ class ExperienceUpdateForm extends React.Component {
               placeholder="Location of employment"
             />
           </FormGroup>
-          <Input
-            id="submitBtn"
+          {/* <FormGroup>
+            <Label for="user">UserName</Label>
+            <Input
+              type="text"
+              onChange={this.updateObj}
+              name="user"
+              id="username"
+              placeholder="username"
+            />
+          </FormGroup> */}
+          <Button
             type="submit"
             className="btn btn-success"
             value="Submit"
             onClick={this.handleSubmit}
-          />
-          <FormGroup>
-            <Input
-              id="exitBtn"
-              type="exit"
-              class="btn btn-danger"
-              value="Exit"
-              onClick={this.props.closeModal}
-            />
-          </FormGroup>
+          >
+            Submit
+          </Button>
+          <Button
+            type="exit"
+            class="btn btn-danger"
+            value="Exit"
+            onClick={this.props.closeModal}
+          >
+            Exit
+          </Button>
         </Form>
       </div>
     );
